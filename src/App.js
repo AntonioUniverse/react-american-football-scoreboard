@@ -1,18 +1,24 @@
 //TODO: STEP 1 - Import the useState hook.
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
-import {useState} from 'react'
+
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
- const [homescore, sethomescore] = useState(32)
- const [awayscore, setawayscore] = useState(32)
+  const intialstate = 32
+ const [homescore, sethomescore] = useState(intialstate)
+ const [awayscore, setawayscore] = useState(intialstate)
  console.log(setawayscore)
  console.log(sethomescore)
  console.log(homescore)
  console.log(awayscore)
- 
+ const touchdown = (setstate, state) =>{
+   setstate(state += 7)
+ }
+ const fieldgoal = (setstate, state) =>{
+  setstate(state += 3)
+}
   return ( 
     <div className="container">
       <section className="scoreboard">
@@ -36,31 +42,19 @@ function App() {
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
           <button className="homeButtons__touchdown"
-          onClick={ () => {
-            sethomescore( homescore + 7) 
-         
-          }}
+          onClick={ ()=> touchdown(sethomescore,homescore)}
           >Home Touchdown</button>
           <button className="homeButtons__fieldGoal"
-          onClick={ () => {
-            sethomescore( homescore + 3) 
-         
-          }}
+          onClick={()=> fieldgoal(sethomescore,homescore)}
           >Home Field Goal</button>
         </div>
         <div className="awayButtons">
           <button className="awayButtons__touchdown"
-           onClick={ () => {
-            setawayscore( awayscore + 7) 
-         
-          }}
+           onClick={() => touchdown(setawayscore,awayscore)}
           
           >Away Touchdown</button>
           <button className="awayButtons__fieldGoal"
-          onClick={ () => {
-            setawayscore( awayscore + 3) 
-         
-          }}
+          onClick={() => fieldgoal(setawayscore,awayscore)}
           >Away Field Goal</button>
         </div>
       </section>
